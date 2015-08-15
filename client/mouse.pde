@@ -21,7 +21,6 @@ class mouse{
     py=ty;
     tx=x;
     ty=y;
-    avadt += (gt-st-avadt)*0.01;
     dt = avadt;
     st = gt;
   }
