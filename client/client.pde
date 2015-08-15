@@ -2,8 +2,8 @@ import processing.net.*;
 int gt = 0;
 ArrayList<Text> TEXTS=new ArrayList<Text>();
 addtext NEWtext=new addtext(0,0);
-Text IPtext=new Text(100,100);
-Text nametext=new Text(100,100);
+Text IPtext=new Text(100,100,"","IP");
+Text nametext=new Text(100,200,"","NAME");
 int texttop=0;
 void setup(){
   noCursor();
@@ -13,17 +13,17 @@ void setup(){
 
 void draw(){
   if(mousePressed){
-    IPtext.touch();
-    nametext.touch();
-    if(IPtext.state);
-    else if(nametext.state);
+    if(IPtext.touch());
+    else if(nametext.touch());
     else
     NEWtext.reset(mouseX,mouseY);
   }
+ 
+  update();
+  render();
+  IPtext.draw();
+  nametext.draw();
   NEWtext.draw();
   for(int i=0;i<texttop;i++)TEXTS.get(i).draw();
   gt++;
-  
-  update();
-  render();
 }
