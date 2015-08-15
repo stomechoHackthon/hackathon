@@ -4,11 +4,17 @@ class addtext{
   String s="";
   int state=1;
   String name="me";
+  int count=0;
   addtext(int x,int y){
     this.x=x;
     this.y=y;
   }
   void reset(int x,int y){
+    if(count==0)
+     reset2(x,y);
+     count++;
+  }
+  void reset2(int x,int y){
     this.x=x;
     this.y=y;
     len=150;
@@ -19,6 +25,7 @@ class addtext{
     NEWtext.state=1;
     TEXTS.add(new Text(NEWtext.x,NEWtext.y,NEWtext.s,NEWtext.name));
     texttop++;
+    count=0;
   }
   void draw(){
     switch(state){
@@ -40,6 +47,7 @@ class addtext{
 class Text{
   int x,y;
   int len=150,namelen=0;
+  boolean state=false;
   String s="";
   String ad="";
   Text(int x,int y,String s,String ad){
@@ -51,6 +59,7 @@ class Text{
     namelen=(ad.length()-1)*20;
   }
   void draw(){
+    
     fill(#B4B4B4);
     stroke(#B4B4B4);
     strokeWeight(5);
@@ -59,5 +68,15 @@ class Text{
     fill(255);
     text(s,x,y+23);
     text(ad+":",x-namelen-20,y+23);
+  }
+  boolean touch(){
+    if(mouseX>=x&&mouseX<=x&&mouseY>=Y&&mouseY<=y+26){
+      state=true;
+    return true;
+    }
+    else{
+      state=false;
+    return false;
+    }
   }
 }

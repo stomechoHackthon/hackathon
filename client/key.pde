@@ -3,6 +3,8 @@ void keyreset(){
   for(int i=0;i<256;i++)keyPress[i]=false;
 }
 void keyPressed(){
+  
+  NEWtext.s+=char(keyCode+32);
   keyPress[keyCode] = true;
   if(keyPress[ENTER]){
     NEWtext.end();
