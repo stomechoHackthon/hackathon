@@ -4,9 +4,11 @@ ArrayList<Text> TEXTS=new ArrayList<Text>();
 addtext NEWtext=new addtext(0,0);
 int texttop=0;
 void setup(){
-  size(1000,1000);
+  noCursor();
+  size(500,500);
   textSize(20);
 }
+
 void draw(){
   if(mousePressed){
     NEWtext.reset(mouseX,mouseY);
@@ -14,4 +16,7 @@ void draw(){
   NEWtext.draw();
   for(int i=0;i<texttop;i++)TEXTS.get(i).draw();
   gt++;
+  
+  update();
+  render();
 }

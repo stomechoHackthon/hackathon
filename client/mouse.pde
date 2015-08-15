@@ -6,8 +6,8 @@ class mouse{
   int x,y;
   int st,dt=10;
   int avadt = 10;
-  String name;
-  mouse(int x,int y){
+  String name="default";
+  mouse(String name,int x,int y){
     tx=x;
     ty=y;
     px=x;
@@ -16,8 +16,8 @@ class mouse{
     dt=10;
   }
   void set(int x,int y){
-    px=this.x;
-    py=this.y;
+    px=tx;
+    py=ty;
     tx=x;
     ty=y;
     avadt += (gt-st-avadt)*0.01;
@@ -39,7 +39,10 @@ class mouse{
 void mdata(String name,int x,int y){
   int i=0;
   for(i=0;i<mouseCount;i++) if(otherm[i].name==name)break;
-  if(i==mouseCount) mouseCount++;
+  if(i==mouseCount) {
+    otherm[i] = new mouse(name,x,y);
+    mouseCount++;
+  }
   otherm[i].set(x,y);
 }
 

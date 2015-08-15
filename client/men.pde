@@ -1,3 +1,4 @@
+Client me;
 class men{
   Client me;
   int status = 0;
@@ -15,43 +16,50 @@ class men{
   String serverIp;
   String name;
   
-  mouse mice;
-  men(){
-    
+  mouse mice = new mouse("me",0,0);
+  men(String name){
+    this.name = name;
   }
   boolean login(String ip,int port,String name){
     try{
-      me = new Client(thisapp(),ip,port);
-      me.write("start,"+name);
+      mice.name = name;
+      loginip(ip,port);
+      write("start,"+name);
       newStatus(1);
+      serverOk = true;
       return true;
     } catch (Exception e){
+      println("ip= "+ip);
       return false;
     }
   }
   void update(){
     mice.set(mouseX,mouseY);
     if(serverOk) {
-      me.write("p,"+id+","+mice.x+","+mice.y);
+      write("p,"+id+","+mice.tx+","+mice.ty);
       getData();
     }
   }
   
   void getData(){
-    if(me.available() > 0){
-      String inString = me.readString();
+    if(available() > 0){
+      String inString = readString();
       data = split(inString,',');
+      
       if(data[0] == "success"){
         id = parseInt(data[2]);
-        status = 2;
       }else if(data[0] == "p"){
+        println("[client]getPos");
         mdata(data[1],parseInt(data[2]),parseInt(data[3]));
-        
+      }else if(data[0] == "t"){
+        if(data[2]!=name)TEXTS.add(new Text(parseInt(data[3]),parseInt(data[4]),data[2],data[1]));
       }
+      println(data);
     }
+    println("no data");
   }
   void sentText(String s,int x,int y){
-    me.write("t,"+id+","+x+","+y);
+    write("t,"+id+","+x+","+y);
   }
   
   void newStatus(int s){
@@ -63,6 +71,20 @@ class men{
   }
 }
 
+void loginip(String ip,int port){
+  me = new Client(this,ip,port);
+}
+void write(String s){
+  print("write");
+  me.write(s);
+  println("OK");
+}
+int available(){
+  return me.available();
+}
+String readString(){
+  return me.readString();
+}
 PApplet thisapp(){
   return this;
 }
