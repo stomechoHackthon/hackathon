@@ -12,7 +12,7 @@ class men{
   String[] data;
   final int maxWaitTime = 300;
   
-  int id;
+  int id=0;
   String serverIp;
   String name;
   
@@ -36,7 +36,7 @@ class men{
   void update(){
     mice.set(mouseX,mouseY);
     if(serverOk) {
-      write("p,"+id+","+mice.tx+","+mice.ty);
+      if(id!=0)write("p,"+id+","+mice.tx+","+mice.ty);
       getData();
     }
   }
