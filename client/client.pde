@@ -12,9 +12,9 @@ void setup(){
 }
 
 void draw(){
-  IPtext.touch();
-  nametext.touch();
   if(mousePressed){
+    IPtext.touch();
+    nametext.touch();
     if(IPtext.state);
     else if(nametext.state);
     else
