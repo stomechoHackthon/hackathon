@@ -23,7 +23,8 @@ class addtext{
   }
   void end(){
     NEWtext.state=1;
-    TEXTS.add(new Text(NEWtext.x,NEWtext.y,NEWtext.s,NEWtext.name));
+    TEXTS.add(new Text(NEWtext.x,NEWtext.y,NEWtext.s,f.name));
+    f.sentText(NEWtext.s,NEWtext.x,NEWtext.y);
     texttop++;
     count=0;
   }

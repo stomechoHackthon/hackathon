@@ -64,7 +64,7 @@ class men{
     }
   }
   void sentText(String s,int x,int y){
-    write("t,"+id+","+x+","+y);
+    write("t,"+id+","+s+","+x+","+y);
   }
   
   void newStatus(int s){

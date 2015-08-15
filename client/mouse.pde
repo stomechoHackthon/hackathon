@@ -4,7 +4,7 @@ class mouse{
   int tx,ty;
   int px,py;
   int x,y;
-  int st,dt=10;
+  int st,dt=2;
   int avadt = 10;
   String name="default";
   mouse(String name,int x,int y){
