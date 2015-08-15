@@ -3,6 +3,7 @@ void keyreset(){
   for(int i=0;i<256;i++)keyPress[i]=false;
 }
 void keyPressed(){
+  pqa(keyCode);
     if(IPtext.state)
   IPtext.s+=char(keyCode+32);
   else if(nametext.state)
@@ -31,7 +32,7 @@ void keyPressed(){
 //  }
   
   boolean ok = false;
-  if(keyCode == 'l'-32) ok=f.login("192.168.43.67",7480,"hans"+(int)random(20));
+  if(keyCode == 'l'-32) ok=f.login("192.168.43.67",7480,tbs.get(1).text+(int)random(20));
   println(ok);
   
 }
