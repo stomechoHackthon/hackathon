@@ -4,6 +4,9 @@ void keyreset(){
 }
 void keyPressed(){
   keyPress[keyCode] = true;
+  if(keyPress[ENTER]){
+    NEWtext.end();
+  }
 }
 void keyReleased(){
   keyPress[keyCode] = false;

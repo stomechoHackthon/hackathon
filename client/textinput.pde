@@ -2,7 +2,8 @@ class addtext{
   int x,y;
   int len=150;
   String s="";
-  int state=0;
+  int state=1;
+  String name="me";
   addtext(int x,int y){
     this.x=x;
     this.y=y;
@@ -11,7 +12,13 @@ class addtext{
     this.x=x;
     this.y=y;
     len=150;
+    state=0;
     s="";
+  }
+  void end(){
+    NEWtext.state=1;
+    TEXTS.add(new Text(NEWtext.x,NEWtext.y,NEWtext.s,NEWtext.name));
+    texttop++;
   }
   void draw(){
     switch(state){

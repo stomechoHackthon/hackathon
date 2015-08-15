@@ -1,6 +1,7 @@
 import processing.net.*;
 int gt = 0;
-ArrayList<Text> as=new ArrayList<Text>();
+ArrayList<Text> TEXTS=new ArrayList<Text>();
+addtext NEWtext=new addtext(0,0);
 int texttop=0;
 void setup(){
   size(1000,1000);
@@ -8,9 +9,9 @@ void setup(){
 }
 void draw(){
   if(mousePressed){
-    as.add(new Text(mouseX,mouseY,"saas","sds"));
-    texttop++;
+    NEWtext.reset(mouseX,mouseY);
   }
-  for(int i=0;i<texttop;i++)as.get(i).draw();
+  NEWtext.draw();
+  for(int i=0;i<texttop;i++)TEXTS.get(i).draw();
   gt++;
 }
