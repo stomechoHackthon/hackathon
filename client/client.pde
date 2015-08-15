@@ -1,3 +1,5 @@
+import processing.net.*;
+int gt = 0;
 ArrayList<Text> as=new ArrayList<Text>();
 int texttop=0;
 void setup(){
@@ -10,4 +12,5 @@ void draw(){
     texttop++;
   }
   for(int i=0;i<texttop;i++)as.get(i).draw();
+  gt++;
 }
