@@ -14,6 +14,8 @@ class men{
   int id;
   String serverIp;
   String name;
+  
+  mouse mice;
   men(){
     
   }
@@ -28,7 +30,11 @@ class men{
     }
   }
   void update(){
-    if(serverOk) getData();
+    mice.set(mouseX,mouseY);
+    if(serverOk) {
+      me.write("p,"+id+","+mice.x+","+mice.y);
+      getData();
+    }
   }
   
   void getData(){
@@ -39,9 +45,13 @@ class men{
         id = parseInt(data[2]);
         status = 2;
       }else if(data[0] == "p"){
+        mdata(data[1],parseInt(data[2]),parseInt(data[3]));
         
       }
     }
+  }
+  void sentText(String s,int x,int y){
+    me.write("t,"+id+","+x+","+y);
   }
   
   void newStatus(int s){
