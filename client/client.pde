@@ -1,5 +1,5 @@
 import processing.net.*;
-int gT = 0;
+int gt = 0;
 
 void setup(){
 }

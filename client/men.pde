@@ -6,10 +6,9 @@ class men{
   //  1 傳送登記資料
   //  2 接收id完成
   //  3  
-  int sTime = 0;//紀錄狀態開始時間
+  int t = 0;//紀錄狀態開始時間
   boolean serverOk = false;
-  String[] getData;
-  String dataType = "";
+  String[] data;
   final int maxWaitTime = 300;
   
   int id;
@@ -20,34 +19,28 @@ class men{
   }
   boolean login(String ip,int port,String name){
     try{
-      me = new Client(this,ip,port);
+      me = new Client(thisapp(),ip,port);
       me.write("start,"+name);
       newStatus(1);
+      return true;
     } catch (Exception e){
       return false;
     }
   }
   void update(){
     if(serverOk) getData();
-    switch(status){
-      case 0:
-        break;
-      case 1:
-        if(dt<=maxWaitTime && dataType == "success"){
-          id = parseInt(data[2]);
-          status = 2;
-        }
-        break;
-      case 
-      
-    }
   }
   
   void getData(){
-    if(me.avaliable() > 0){
+    if(me.available() > 0){
       String inString = me.readString();
       data = split(inString,',');
-      dataType = data[0];
+      if(data[0] == "success"){
+        id = parseInt(data[2]);
+        status = 2;
+      }else if(data[0] == "p"){
+        
+      }
     }
   }
   
@@ -58,4 +51,8 @@ class men{
   int dt(){
     return gt-t;
   }
+}
+
+PApplet thisapp(){
+  return this;
 }
