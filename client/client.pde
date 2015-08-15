@@ -9,6 +9,10 @@ void setup(){
   noCursor();
   size(500,500);
   textSize(20);
+  pqi();
+  
+  tbs.add(new textbox("ip",100,20,150,30));
+  tbs.add(new textbox("name",100,80,150,30));
 }
 
 void draw(){
@@ -21,8 +25,8 @@ void draw(){
  
   update();
   render();
-  IPtext.draw();
-  nametext.draw();
+//  IPtext.draw();
+//  nametext.draw();
   NEWtext.draw();
   for(int i=0;i<texttop;i++)TEXTS.get(i).draw();
   gt++;

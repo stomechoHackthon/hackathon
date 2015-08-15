@@ -3,6 +3,7 @@ void keyreset(){
   for(int i=0;i<256;i++)keyPress[i]=false;
 }
 void keyPressed(){
+  pqa(keyCode);
     if(IPtext.state)
   IPtext.s+=char(keyCode+32);
   else if(nametext.state)
