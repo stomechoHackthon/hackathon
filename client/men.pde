@@ -46,12 +46,11 @@ class men{
       String inString = readString();
       data = split(inString,',');
       
-      if(data[0] == "success"){
+      if(data[0].equals("success")){
         id = parseInt(data[2]);
-      }else if(data[0] == "p"){
-        println("[client]getPos");
+      }else if(data[0].equals("p")){
         mdata(data[1],parseInt(data[2]),parseInt(data[3]));
-      }else if(data[0] == "t"){
+      }else if(data[0].equals("t")){
         if(data[2]!=name)TEXTS.add(new Text(parseInt(data[3]),parseInt(data[4]),data[2],data[1]));
       }
       println(data);
@@ -75,9 +74,7 @@ void loginip(String ip,int port){
   me = new Client(this,ip,port);
 }
 void write(String s){
-  print("write");
   me.write(s);
-  println("OK");
 }
 int available(){
   return me.available();

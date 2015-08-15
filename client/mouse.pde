@@ -14,6 +14,7 @@ class mouse{
     py=y;
     st=gt;
     dt=10;
+    this.name = name;
   }
   void set(int x,int y){
     px=tx;
@@ -37,9 +38,13 @@ class mouse{
 }
 
 void mdata(String name,int x,int y){
+  println("new mouse");
   int i=0;
-  for(i=0;i<mouseCount;i++) if(otherm[i].name==name)break;
+  for(i=0;i<mouseCount&&!otherm[i].name.equals(name);i++) {
+    println("see "+otherm[i].name);
+  }
   if(i==mouseCount) {
+    println("new mouse at "+i+" call "+name);
     otherm[i] = new mouse(name,x,y);
     mouseCount++;
   }
