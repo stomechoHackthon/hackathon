@@ -28,14 +28,6 @@ void setup() {
 	bash("server is start in "+Server.ip());
 	println("server is start in "+Server.ip());
 	start=false;
-
-	Player IU=new Player();
-	IU.id=10;
-	IU.name="IU";
-	IU.x=200;
-	IU.y=200;
-	playerlist[playernum]=IU;
-	playernum++;
 }
 
 void draw() {
