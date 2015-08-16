@@ -43,8 +43,11 @@ class car{
       ellipse(ws.get(i).pos.x,ws.get(i).pos.y,ws.get(i).r,ws.get(i).r);
     }
     for(int i=0;i<cons.size();i++){
+      try{
       strokeWeight(5*cons.get(i).k);
       line(ws.get(cons.get(i).a).pos.x,ws.get(cons.get(i).a).pos.y,ws.get(cons.get(i).b).pos.x,ws.get(cons.get(i).b).pos.y);
+      }catch(Exception e){
+      }
     }
     strokeWeight(1);
   }

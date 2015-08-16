@@ -5,6 +5,10 @@ void keyPressed(){
 
 void keyReleased(){
   keyPress[keyCode] = false;
+  switch(keyCode){
+    case 'c'-32: c.cons.clear();break;
+    case 'l'-32: c.cons.clear(); c.ws.clear(); c.addw(new v2(20,20),50,20); break;
+  }
 }
 
 void mouseWheel(MouseEvent event) {

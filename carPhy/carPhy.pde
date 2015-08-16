@@ -19,13 +19,13 @@ void mousePressed(){
     stop = !stop;
   }else{
     dragfrom = -1;
-    for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r){ dragfrom = i;break;}
+    for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r*0.5){ dragfrom = i;break;}
   }
 }
 void mouseReleased(){
   dragto = -1;
   if(dragfrom!=-1){
-    for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r){ dragto = i;break;}
+    for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r*0.5){ dragto = i;break;}
     if(dragto!=-1){
       c.addc(dragfrom,dragto,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(dragto).pos)),nkk);
     }else{
