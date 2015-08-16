@@ -175,6 +175,7 @@ public void keyReleased(){
     case 51: mapstatus=3;lasty=330;break;
     case 52: mapstatus=4;lasty=330;break;  
     case 53: mapstatus=5;lasty=330;break;  
+    case 54: mapstatus=0;dx=50;break;  
   }
 }
 
