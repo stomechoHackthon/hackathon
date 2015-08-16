@@ -1,15 +1,12 @@
 car c = new car();
 boolean stop = false;
+int gt = 0;
+int subt = 5;
 void setup() {
   size(1000, 600);
+  mapstart();
+  
   c.addw(new v2(100,100),50,10);
-   c.addw(new v2(100,100),80,3);
-   c.addw(new v2(100,100),80,3);
-   c.addw(new v2(100,100),10,3);
-   c.addw(new v2(100,100),10,3);
-    c.addc(1,2,150,0.999);
-    c.addc(1,3,150,0.999);
-    c.addc(1,2,150,0.999);
 }
 
 int dragfrom = -1;
@@ -29,13 +26,22 @@ void mouseReleased(){
       c.addc(dragfrom,c.ws.size()-1,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(c.ws.size()-1).pos)),0.9);
     }
   }
+  dragfrom = -1;
+  dragto = -1;
   stop = false;
 }
 
 
 void draw() {
+  
   background(0);
+  if(!stop&&gt%subt==0)genMap();
+  mapdraw();
   c.run();
   c.draw();
+   if(dragfrom!=-1){
+     line(c.ws.get(dragfrom).pos.x,c.ws.get(dragfrom).pos.y,mouseX,mouseY);
+   }
+  if(!stop)gt++;
 }
 

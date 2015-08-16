@@ -50,6 +50,17 @@ class p2{
       vel = add(vel,f);
     }
   }
+  
+  void colm(){
+    int i=drawpoint+1;
+    int sx=-gt%subt*maplist.get(maplist.size()-1).x/subt;
+    while(sx<pos.x){
+      sx+=maplist.get(i).x;
+      i++;
+    }
+    i-=2;
+    col(new l2(new v2(sx-maplist.get(i).x,maplist.get(i).y),new v2(sx,maplist.get(i+1).y)));
+  }
 }
 
 class l2{

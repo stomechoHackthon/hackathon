@@ -20,16 +20,16 @@ class car{
         for(int j=i+1;j<ws.size();j++){
           ws.get(i).col(ws.get(j));
         }
-        ws.get(i).col(new l2(new v2(0,0),new v2(0,600)));
-        ws.get(i).col(new l2(new v2(0,600),new v2(1000,600)));
-        ws.get(i).col(new l2(new v2(1000,600),new v2(1000,0)));
       }
-      ws.get(ws.size()-1).col(new l2(new v2(0,0),new v2(0,600)));
-      ws.get(ws.size()-1).col(new l2(new v2(0,600),new v2(1000,600)));
-      ws.get(ws.size()-1).col(new l2(new v2(1000,600),new v2(1000,0)));
       
       for(int i=0;i<cons.size();i++){
         ws.get(cons.get(i).a).con(ws.get(cons.get(i).b),cons.get(i).l,cons.get(i).k);
+      }
+      for(int i=0;i<ws.size();i++){
+        ws.get(i).colm();
+        ws.get(i).col(new l2(new v2(0,0),new v2(0,600)));
+        ws.get(i).col(new l2(new v2(0,600),new v2(1000,600)));
+        ws.get(i).col(new l2(new v2(1000,600),new v2(1000,0)));
       }
       
       for(int i=0;i<ws.size();i++){
