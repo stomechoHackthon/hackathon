@@ -11,7 +11,7 @@ int mapstatus=5;
 int lasty=330;
 int hy=550;
 int ly=450;
-int dx = 5;
+int dx = 1;
 boolean path = true;
 boolean ran = false;
 int ryv=0;
@@ -44,7 +44,7 @@ void genMap(){
   while (tx<width) {
     tpoint=maplist.get(i);
     tx+=tpoint.x;
-    //println(tx+","+tpoint.y);
+    println(tx+","+tpoint.y);
     i++;
     maplist.add(mapadd());
   }
@@ -64,33 +64,33 @@ Point mapadd(){
   if(!ran){
     rx = int(random(8+mapstatus*2, 16+mapstatus*2))*dx;
     if(int(random(10))%10>=(9-mapstatus)){
-      ry=lasty+int(random(-30-mapstatus*1, 30+mapstatus*1));
+      ry=lasty+int(random(-4-mapstatus*1, 4+mapstatus*1));
     }else {
       if(!path){
-        ry=lasty+int(random(-30-mapstatus, 0));
+        ry=lasty+int(random(-4-mapstatus, 0));
       }
       else if (path){
-        ry=lasty+int(random(0, 30+mapstatus));
+        ry=lasty+int(random(0, 4+mapstatus));
       }    
     }
     
-    if(lasty+5*mapstatus>(hy+(5*mapstatus))){
+    if(lasty+8*mapstatus>(hy+(8*mapstatus))){
       path=false;
-    }else if ((lasty-5*mapstatus)<(ly-(mapstatus*5))) {
+    }else if ((lasty-8*mapstatus)<(ly-(mapstatus*8))) {
       path=true;
     }
   }else {
       rx = int(random(8+mapstatus*2, 16+mapstatus*2));
       ry=lasty+int(random(-30-mapstatus*1, 30+mapstatus*1));
-      if(lasty+5*mapstatus>hy)
+      if(lasty+10*mapstatus>hy)
         ry=lasty+int(random(-30-mapstatus, 0));
-      else if ((lasty-5*mapstatus)<ly)
+      else if ((lasty-10*mapstatus)<ly)
         ry=lasty+int(random(0, 30+mapstatus));
       //println("random");
   }
 
-  //ryv+=(ry-lasty)*0.2;
-  //ry=lasty+ryv;
+  ryv+=(ry-lasty)*0.2;
+  ry=lasty+ryv;
 
   lasty=ry;
   Point rpoint=new Point();

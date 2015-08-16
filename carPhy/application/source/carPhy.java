@@ -17,7 +17,7 @@ public class carPhy extends PApplet {
 car c = new car();
 boolean stop = false;
 int gt = 0;
-int subt = 5;
+int subt = 1;
 int csize = 20;
 float nkk = 1;
 boolean view = false;
@@ -50,7 +50,7 @@ public void mouseReleased(){
     if(dragto!=-1){
       c.addc(dragfrom,dragto,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(dragto).pos)),nkk);
     }else{
-      c.addw(new v2(mouseX,mouseY),csize,50);
+      c.addw(new v2(mouseX,mouseY),csize,csize);
       c.addc(dragfrom,c.ws.size()-1,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(c.ws.size()-1).pos)),nkk);
     }
   }
@@ -171,12 +171,12 @@ public void keyReleased(){
     case 'i'-32: imp();break;
     case 'v'-32: view = !view;break;
     case 'r'-32:ran=!ran;println(ran);break;  
-    case 49: mapstatus=1;mapremove(lastpoint);dx=5;break;
-    case 50: mapstatus=2;mapremove(lastpoint);dx=5;break;
-    case 51: mapstatus=3;mapremove(lastpoint);dx=5;break;
-    case 52: mapstatus=4;mapremove(lastpoint);dx=5;break;  
-    case 53: mapstatus=5;mapremove(lastpoint);dx=5;break;  
-    case 54: mapstatus=0;mapremove(lastpoint);dx=10;break;  
+    case 49: mapstatus=1;mapremove(lastpoint);break;
+    case 50: mapstatus=2;mapremove(lastpoint);break;
+    case 51: mapstatus=3;mapremove(lastpoint);break;
+    case 52: mapstatus=4;mapremove(lastpoint);break;  
+    case 53: mapstatus=5;mapremove(lastpoint);break;  
+    case 54: mapstatus=0;mapremove(lastpoint);break;  
   }
 }
 
@@ -327,7 +327,7 @@ int mapstatus=5;
 int lasty=330;
 int hy=550;
 int ly=450;
-int dx = 5;
+int dx = 1;
 boolean path = true;
 boolean ran = false;
 int ryv=0;
@@ -360,7 +360,7 @@ public void genMap(){
   while (tx<width) {
     tpoint=maplist.get(i);
     tx+=tpoint.x;
-    //println(tx+","+tpoint.y);
+    println(tx+","+tpoint.y);
     i++;
     maplist.add(mapadd());
   }
@@ -380,33 +380,33 @@ public Point mapadd(){
   if(!ran){
     rx = PApplet.parseInt(random(8+mapstatus*2, 16+mapstatus*2))*dx;
     if(PApplet.parseInt(random(10))%10>=(9-mapstatus)){
-      ry=lasty+PApplet.parseInt(random(-30-mapstatus*1, 30+mapstatus*1));
+      ry=lasty+PApplet.parseInt(random(-4-mapstatus*1, 4+mapstatus*1));
     }else {
       if(!path){
-        ry=lasty+PApplet.parseInt(random(-30-mapstatus, 0));
+        ry=lasty+PApplet.parseInt(random(-4-mapstatus, 0));
       }
       else if (path){
-        ry=lasty+PApplet.parseInt(random(0, 30+mapstatus));
+        ry=lasty+PApplet.parseInt(random(0, 4+mapstatus));
       }    
     }
     
-    if(lasty+5*mapstatus>(hy+(5*mapstatus))){
+    if(lasty+8*mapstatus>(hy+(8*mapstatus))){
       path=false;
-    }else if ((lasty-5*mapstatus)<(ly-(mapstatus*5))) {
+    }else if ((lasty-8*mapstatus)<(ly-(mapstatus*8))) {
       path=true;
     }
   }else {
       rx = PApplet.parseInt(random(8+mapstatus*2, 16+mapstatus*2));
       ry=lasty+PApplet.parseInt(random(-30-mapstatus*1, 30+mapstatus*1));
-      if(lasty+5*mapstatus>hy)
+      if(lasty+10*mapstatus>hy)
         ry=lasty+PApplet.parseInt(random(-30-mapstatus, 0));
-      else if ((lasty-5*mapstatus)<ly)
+      else if ((lasty-10*mapstatus)<ly)
         ry=lasty+PApplet.parseInt(random(0, 30+mapstatus));
       //println("random");
   }
 
-  //ryv+=(ry-lasty)*0.2;
-  //ry=lasty+ryv;
+  ryv+=(ry-lasty)*0.2f;
+  ry=lasty+ryv;
 
   lasty=ry;
   Point rpoint=new Point();

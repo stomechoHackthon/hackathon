@@ -13,12 +13,12 @@ void keyReleased(){
     case 'i'-32: imp();break;
     case 'v'-32: view = !view;break;
     case 'r'-32:ran=!ran;println(ran);break;  
-    case 49: mapstatus=1;mapremove(lastpoint);dx=5;break;
-    case 50: mapstatus=2;mapremove(lastpoint);dx=5;break;
-    case 51: mapstatus=3;mapremove(lastpoint);dx=5;break;
-    case 52: mapstatus=4;mapremove(lastpoint);dx=5;break;  
-    case 53: mapstatus=5;mapremove(lastpoint);dx=5;break;  
-    case 54: mapstatus=0;mapremove(lastpoint);dx=10;break;  
+    case 49: mapstatus=1;mapremove(lastpoint);break;
+    case 50: mapstatus=2;mapremove(lastpoint);break;
+    case 51: mapstatus=3;mapremove(lastpoint);break;
+    case 52: mapstatus=4;mapremove(lastpoint);break;  
+    case 53: mapstatus=5;mapremove(lastpoint);break;  
+    case 54: mapstatus=0;mapremove(lastpoint);break;  
   }
 }
 
