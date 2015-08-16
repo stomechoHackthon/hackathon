@@ -34,7 +34,7 @@ class p2{
     if(abs(d.len)<(r+p.r)*0.5){
       println("col");
       v2v f = new v2v(d.angle,d.len-(r+p.r)*0.5);
-      v2v n = mult(new v2v(d.angle+HALF_PI,1),((w*r-p.w*p.r)*2*PI));
+      v2v n = mult(new v2v(d.angle-HALF_PI,1),((w*r-p.w*p.r)*2*PI));
       f = add(f,n);
       vel.set(add(vel,mult(f,p.m/(m+p.m)*0.5)));
       p.vel.set(sub(p.vel,mult(f,m/(m+p.m)*0.5)));
