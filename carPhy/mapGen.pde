@@ -8,8 +8,8 @@ ArrayList<Point> maplist=new ArrayList<Point>();
 int drawpoint=0;
 int mapstatus=5;
 int lasty=330;
-int hy=380;
-int ly=280;
+int hy=400;
+int ly=200;
 int dx = 10;
 boolean path = true;
 
@@ -51,7 +51,7 @@ void genMap(){
   drawpoint=drawpoint+1;
 }
 void mapstart(){
-  for(int i=0;i<2;i++){
+  for(int i=0;i<20;i++){
     maplist.add(mapadd());
   }
 }

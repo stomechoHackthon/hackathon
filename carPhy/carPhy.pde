@@ -1,7 +1,7 @@
 car c = new car();
 boolean stop = false;
 int gt = 0;
-int subt = 5;
+int subt = 100;
 void setup() {
   size(1000, 600);
   mapstart();
@@ -12,8 +12,12 @@ void setup() {
 int dragfrom = -1;
 int dragto = -1;
 void mousePressed(){
-  dragfrom = -1;
-  for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r){ dragfrom = i;stop = true;break;}
+  if(mouseButton == RIGHT){
+    stop = !stop;
+  }else{
+    dragfrom = -1;
+    for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r){ dragfrom = i;break;}
+  }
 }
 void mouseReleased(){
   dragto = -1;
@@ -28,7 +32,6 @@ void mouseReleased(){
   }
   dragfrom = -1;
   dragto = -1;
-  stop = false;
 }
 
 
