@@ -11,7 +11,7 @@ class Player{
 int[] id={1,2,3};
 String[] value={"start","p","t"};
 
-ArrayList<String> input=new ArrayList<String>();
+String[] input;
 String[] temp;
 String[] queue;
 Player[] playerlist=new Player[99];
@@ -60,10 +60,10 @@ void listen(){
 }
 
 void engine(String a,Client thisClient){
-	//println(a);
+	println(a);
 	temp=split(a, ',');
 	int event=convert(temp[0]);
-	//println(event);
+	println(event);
 	switch (event) {
 		case 1 :
 			tplayer=new Player();
@@ -87,12 +87,10 @@ void engine(String a,Client thisClient){
 		break;
 		case 3 :
 			tplayer=who(int(temp[1]));
-			String yo=temp[2];
-			yo=yo.substring(0,yo.length()-1);
-			input.add(tplayer.id+","+yo);
-			bash("Player "+tplayer.name+" text "+yo);
-			println("Player "+tplayer.name+" text "+yo);
-			mainserver.write("t,"+tplayer.id+","+yo+","+temp[3]+","+temp[4]+"|");
+			input[input.length]=tplayer.id+","+temp[2];
+			bash("Player "+tplayer.name+" text "+temp[2]);
+			println("Player "+tplayer.name+" text "+temp[2]);
+			mainserver.write("t,"+tplayer.id+","+temp[2]+","+temp[3]+","+temp[4]+"|");
 		break;		
 	}
 }

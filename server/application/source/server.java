@@ -1,4 +1,22 @@
-import processing.net.*;
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import processing.net.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class server extends PApplet {
+
+
 Server mainserver;
 
 class Player{
@@ -11,7 +29,7 @@ class Player{
 int[] id={1,2,3};
 String[] value={"start","p","t"};
 
-ArrayList<String> input=new ArrayList<String>();
+String[] input;
 String[] temp;
 String[] queue;
 Player[] playerlist=new Player[99];
@@ -22,7 +40,7 @@ Player tplayer;
 boolean start=false;
 
 
-void setup() {
+public void setup() {
 	size(512, 512);
 	mainserver = new Server(this, 7480); 
 	println("server is start in "+Server.ip());
@@ -34,14 +52,14 @@ void setup() {
 	frameRate(20);
 }
 
-void draw() {
+public void draw() {
 	listen(); 
 	if(start){
 		send();
 	}
 }
 
-void listen(){
+public void listen(){
 	Client thisClient = mainserver.available();
   	if (thisClient !=null) {
 	    	String whatClientSaid = thisClient.readString();
@@ -59,11 +77,11 @@ void listen(){
   	}
 }
 
-void engine(String a,Client thisClient){
-	//println(a);
+public void engine(String a,Client thisClient){
+	println(a);
 	temp=split(a, ',');
 	int event=convert(temp[0]);
-	//println(event);
+	println(event);
 	switch (event) {
 		case 1 :
 			tplayer=new Player();
@@ -79,25 +97,23 @@ void engine(String a,Client thisClient){
 			println("ok!");
 		break;	
 		case 2 :
-			tplayer=who(int(temp[1]));
-			tplayer.x=int(temp[2]);
-			tplayer.y=int(temp[3]);
+			tplayer=who(PApplet.parseInt(temp[1]));
+			tplayer.x=PApplet.parseInt(temp[2]);
+			tplayer.y=PApplet.parseInt(temp[3]);
 			//bash("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
 			//println("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
 		break;
 		case 3 :
-			tplayer=who(int(temp[1]));
-			String yo=temp[2];
-			yo=yo.substring(0,yo.length()-1);
-			input.add(tplayer.id+","+yo);
-			bash("Player "+tplayer.name+" text "+yo);
-			println("Player "+tplayer.name+" text "+yo);
-			mainserver.write("t,"+tplayer.id+","+yo+","+temp[3]+","+temp[4]+"|");
+			tplayer=who(PApplet.parseInt(temp[1]));
+			input[input.length]=tplayer.id+","+temp[2];
+			bash("Player "+tplayer.name+" text "+temp[2]);
+			println("Player "+tplayer.name+" text "+temp[2]);
+			mainserver.write("t,"+tplayer.id+","+temp[2]+","+temp[3]+","+temp[4]+"|");
 		break;		
 	}
 }
 
-void send(){
+public void send(){
 	String tempstr="";
 	for(int i=0;i<playernum;i++){
 		tempstr+="p,"+playerlist[i].name+","+playerlist[i].x+","+playerlist[i].y;
@@ -107,7 +123,7 @@ void send(){
 	//println(tempstr);
 }
 
-void  bash(String t){
+public void  bash(String t){
 	if(tbash>26){
 		fill(255);
 		rect(10, 10, 490, 460);
@@ -119,7 +135,7 @@ void  bash(String t){
 	tbash++;
 }
 
-Player who(int temp){
+public Player who(int temp){
 	Player wplayer=new Player();
 	for(int i=0;i<playernum;i++){
 		if(playerlist[i].id==temp){
@@ -129,7 +145,7 @@ Player who(int temp){
 	return wplayer;
 }
 
-int convert(String tp){
+public int convert(String tp){
 	int re=0;
 	for(int i=0;i<id.length;i++){
 		if(tp.equals(value[i])){
@@ -138,4 +154,13 @@ int convert(String tp){
 	}
 	println(re);
 	return re;
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "server" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }

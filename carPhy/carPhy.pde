@@ -34,7 +34,7 @@ void mouseReleased(){
     if(dragto!=-1){
       c.addc(dragfrom,dragto,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(dragto).pos)),nkk);
     }else{
-      c.addw(new v2(mouseX,mouseY),csize,50);
+      c.addw(new v2(mouseX,mouseY),csize,csize);
       c.addc(dragfrom,c.ws.size()-1,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(c.ws.size()-1).pos)),nkk);
     }
   }

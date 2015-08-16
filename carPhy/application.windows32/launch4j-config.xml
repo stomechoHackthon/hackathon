@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <headerType>gui</headerType>
+  <dontWrapJar>true</dontWrapJar>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <outfile>/home/yoyo930021/git/hackathon/carPhy/application.windows32/carPhy.exe</outfile>
+  <icon>/home/yoyo930021/processing-3.0b3/modes/java/application/sketch.ico</icon>
+  <classPath>
+    <mainClass>carPhy</mainClass>
+    <cp>lib/carPhy.jar</cp>
+    <cp>lib/core.jar</cp>
+    <cp>lib/jogl-all.jar</cp>
+    <cp>lib/gluegen-rt.jar</cp>
+    <cp>lib/jogl-all-natives-windows-i586.jar</cp>
+    <cp>lib/gluegen-rt-natives-windows-i586.jar</cp>
+  </classPath>
+  <jre>
+    <minVersion>1.7.0_40</minVersion>
+    <opt>-Djna.nosys=true</opt>
+    <opt>-Djava.library.path="%EXEDIR%\lib"</opt>
+  </jre>
+</launch4jConfig>

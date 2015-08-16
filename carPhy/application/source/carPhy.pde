@@ -1,7 +1,7 @@
 car c = new car();
 boolean stop = false;
 int gt = 0;
-int subt = 1;
+int subt = 5;
 int csize = 20;
 float nkk = 1;
 boolean view = false;

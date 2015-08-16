@@ -29,7 +29,7 @@ class Player{
 int[] id={1,2,3};
 String[] value={"start","p","t"};
 
-String[] input;
+ArrayList<String> input=new ArrayList<String>();
 String[] temp;
 String[] queue;
 Player[] playerlist=new Player[99];
@@ -78,9 +78,10 @@ public void listen(){
 }
 
 public void engine(String a,Client thisClient){
-	println(a);
+	//println(a);
 	temp=split(a, ',');
 	int event=convert(temp[0]);
+	//println(event);
 	switch (event) {
 		case 1 :
 			tplayer=new Player();
@@ -90,7 +91,7 @@ public void engine(String a,Client thisClient){
 			playerlist[playernum]=tplayer;
 			playernum++;
 			bash("Player "+tplayer.name+" Add");
-			println("Player "+tplayer.name+" Add");
+			//println("Player "+tplayer.name+" Add");
 			thisClient.write("success,"+tplayer.id);
 			start=true;
 			println("ok!");
@@ -99,15 +100,17 @@ public void engine(String a,Client thisClient){
 			tplayer=who(PApplet.parseInt(temp[1]));
 			tplayer.x=PApplet.parseInt(temp[2]);
 			tplayer.y=PApplet.parseInt(temp[3]);
-			bash("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
-			println("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
+			//bash("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
+			//println("Player "+tplayer.name+" move to ("+tplayer.x+","+tplayer.y+")");
 		break;
 		case 3 :
 			tplayer=who(PApplet.parseInt(temp[1]));
-			input[input.length]=tplayer.id+","+temp[2];
-			bash("Player "+tplayer.name+" text "+temp[2]);
-			println("Player "+tplayer.name+" text "+temp[2]);
-			mainserver.write("t,"+tplayer.id+","+temp[2]+","+temp[3]+","+temp[4]+"|");
+			String yo=temp[2];
+			yo=yo.substring(0,yo.length()-1);
+			input.add(tplayer.id+","+yo);
+			bash("Player "+tplayer.name+" text "+yo);
+			println("Player "+tplayer.name+" text "+yo);
+			mainserver.write("t,"+tplayer.id+","+yo+","+temp[3]+","+temp[4]+"|");
 		break;		
 	}
 }
@@ -119,7 +122,7 @@ public void send(){
 		tempstr+="|";
 	}
 	mainserver.write(tempstr);
-	println(tempstr);
+	//println(tempstr);
 }
 
 public void  bash(String t){

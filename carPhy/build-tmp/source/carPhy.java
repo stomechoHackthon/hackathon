@@ -50,7 +50,7 @@ public void mouseReleased(){
     if(dragto!=-1){
       c.addc(dragfrom,dragto,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(dragto).pos)),nkk);
     }else{
-      c.addw(new v2(mouseX,mouseY),csize,50);
+      c.addw(new v2(mouseX,mouseY),csize,csize);
       c.addc(dragfrom,c.ws.size()-1,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(c.ws.size()-1).pos)),nkk);
     }
   }
@@ -503,6 +503,7 @@ class l2{
     return toV2().toV2v();
   }
 }
+
 class v2v{
   float angle;
   float len;
@@ -655,7 +656,7 @@ public void ellipse(v2 p,float w,float h){
   ellipse(p.x,p.y*0.5f,w,h*0.5f);
 }
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "carPhy" };
+    String[] appletArgs = new String[] { "--full-screen", "--bgcolor=#666666", "--stop-color=#cccccc", "carPhy" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {
