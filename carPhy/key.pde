@@ -8,6 +8,8 @@ void keyReleased(){
   switch(keyCode){
     case 'c'-32: c.cons.clear();break;
     case 'l'-32: c.cons.clear(); c.ws.clear(); c.addw(new v2(20,20),50,20); break;
+    case 'e'-32: export();break;
+    case 'i'-32: imp();break;
   }
 }
 
@@ -20,5 +22,29 @@ void mouseWheel(MouseEvent event) {
   }else{
     e*=3;
     if(0<csize+e&&csize+e<100)csize+=e;
+  }
+}
+
+void export(){
+  String s[] = new String[c.ws.size()+c.cons.size()];
+  int line=0;
+  for(int i=0;i<c.ws.size();i++){
+    s[line]="w,"+c.ws.get(i).pos.x+","+c.ws.get(i).pos.y+","+c.ws.get(i).r+","+c.ws.get(i).m;
+    line++;
+  }
+  for(int i=0;i<c.cons.size();i++){
+    s[line]="c,"+c.cons.get(i).a+","+c.cons.get(i).b+","+c.cons.get(i).l+","+c.cons.get(i).k;
+    line++;
+  }
+  saveStrings("/data/save/car.txt",s);
+}
+
+void imp(){
+  c.cons.clear(); c.ws.clear();
+  String s[] = loadStrings("save/car.txt");
+  for(int i=0;i<s.length;i++){
+    String line[] = split(s[i],',');
+    if(line[0].charAt(0)=='w') c.addw(new v2(parseFloat(line[1]),parseFloat(line[2])),parseFloat(line[3]),parseFloat(line[4]));
+    else c.addc(parseInt(line[1]),parseInt(line[2]),parseFloat(line[3]),parseFloat(line[4]));
   }
 }

@@ -8,8 +8,8 @@ float nkk = 1;
 void setup() {
   size(1000, 600);
   mapstart();
-  
-  c.addw(new v2(100,100),50,10);
+
+  c.addw(new v2(100,100),50,50);
 }
 
 int dragfrom = -1;
@@ -29,7 +29,7 @@ void mouseReleased(){
     if(dragto!=-1){
       c.addc(dragfrom,dragto,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(dragto).pos)),nkk);
     }else{
-      c.addw(new v2(mouseX,mouseY),csize,20);
+      c.addw(new v2(mouseX,mouseY),csize,csize);
       c.addc(dragfrom,c.ws.size()-1,lenOf(sub(c.ws.get(dragfrom).pos,c.ws.get(c.ws.size()-1).pos)),nkk);
     }
   }
