@@ -37,7 +37,7 @@ void export(){
     s[line]="c,"+c.cons.get(i).a+","+c.cons.get(i).b+","+c.cons.get(i).l+","+c.cons.get(i).k;
     line++;
   }
-  saveStrings("/data/save/car.txt",s);
+  saveStrings("data/save/car.txt",s);
 }
 
 void imp(){
