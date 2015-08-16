@@ -6,10 +6,10 @@ class Point{
 
 ArrayList<Point> maplist=new ArrayList<Point>();
 int drawpoint=0;
-int mapstatus=5;
+int mapstatus=3;
 int lasty=330;
-int hy=400;
-int ly=200;
+int hy=550;
+int ly=300;
 int dx = 10;
 boolean path = true;
 
