@@ -4,12 +4,15 @@ int gt = 0;
 int subt = 3;
 int csize = 20;
 float nkk = 1;
+boolean view = false;
+logger logs[] = new logger[1];
 
 void setup() {
   size(1000, 600);
   mapstart();
-
   c.addw(new v2(100,100),50,50);
+  
+  logs[0] = new logger(20, 100, 150, 80, "game FPS", 30);
 }
 
 int dragfrom = -1;
@@ -22,6 +25,8 @@ void mousePressed(){
     for(int i=0;i<c.ws.size();i++) if(lenOf(sub(new v2(mouseX,mouseY),c.ws.get(i).pos))<c.ws.get(i).r*0.5){ dragfrom = i;break;}
   }
 }
+
+int pmillis = 0;
 void mouseReleased(){
   dragto = -1;
   if(dragfrom!=-1){
@@ -35,12 +40,16 @@ void mouseReleased(){
   }
   dragfrom = -1;
   dragto = -1;
+  pmillis = millis();
 }
 
 
 void draw() {
+  logs[0].addlog(1000f/(millis()-pmillis));
   
+  pmillis= millis();
   background(0);
+  fill(255);
   if(!stop&&gt%subt==0)genMap();
   mapdraw();
   c.run();
@@ -54,5 +63,6 @@ void draw() {
      fill(255);
    }
   if(!stop)gt++;
+  if(view)for(logger l : logs) l.draw();
 }
 

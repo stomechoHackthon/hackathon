@@ -10,6 +10,7 @@ void keyReleased(){
     case 'l'-32: c.cons.clear(); c.ws.clear(); c.addw(new v2(20,20),50,20); break;
     case 'e'-32: export();break;
     case 'i'-32: imp();break;
+    case 'v'-32: view = !view;
   }
 }
 
