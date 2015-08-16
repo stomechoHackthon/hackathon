@@ -8,8 +8,16 @@ void keyReleased(){
   switch(keyCode){
     case 'c'-32: c.cons.clear();break;
     case 'l'-32: c.cons.clear(); c.ws.clear(); c.addw(new v2(20,20),50,20); break;
+    case 'q'-32: c.addw(new v2(mouseX,mouseY),50,20); break;
     case 'e'-32: export();break;
     case 'i'-32: imp();break;
+    case 'v'-32: view = !view;break;
+    case 49: mapstatus=1;lasty=330;break;
+    case 50: mapstatus=2;lasty=330;break;
+    case 51: mapstatus=3;lasty=330;break;
+    case 52: mapstatus=4;lasty=330;break;  
+    case 53: mapstatus=5;lasty=330;break;  
+    case 54: mapstatus=0;dx=50;break;  
   }
 }
 
@@ -36,7 +44,7 @@ void export(){
     s[line]="c,"+c.cons.get(i).a+","+c.cons.get(i).b+","+c.cons.get(i).l+","+c.cons.get(i).k;
     line++;
   }
-  saveStrings("/data/save/car.txt",s);
+  saveStrings("data/save/car.txt",s);
 }
 
 void imp(){
